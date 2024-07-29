@@ -1,0 +1,13 @@
+.App {
+  padding: 5px;
+}
+
+.pink_bar{
+  background-color: pink;
+  color: darkgreen;
+}
+
+.list{
+  padding-left: 20px;
+  margin-top: 20px;
+}

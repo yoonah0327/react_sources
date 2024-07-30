@@ -1,0 +1,9 @@
+.container {
+    display: flex; /*가로배치*/
+    gap: 30px; /* 입력 필드 간의 간격 설정 */
+
+}
+.input-group {
+    display: flex; /* Flexbox를 사용하여 자식 요소들을 배치 */
+    flex-direction: column;  /* 자식 요소들을 세로 방향으로 배치 */
+}

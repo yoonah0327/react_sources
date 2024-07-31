@@ -13,18 +13,18 @@ class Subject extends Component{
 
         return(
             <header>
-                <h1>머리글: {this.props.title}</h1>
-                {this.props.subtitle}
+                <h1>머리글: {this.props.title}🐥</h1>
+                {this.props.subtitle}🐥
                 <br/>
-                button 이벤트:
+                🐥button 이벤트:
                 <br/>  
-                <button onClick={function(){
+                🐥<button onClick={function(){
                     this.props.changePage();
                 }.bind(this)}>{this.props.subtitle}</button>
                 <br/><br/>
-                <button onClick={clickHandler}>두번째 버튼</button>
+                🐥<button onClick={clickHandler}>두번째 버튼</button>
                 <br/><br/>
-                <input type="text" onKeyUp={keyUpHandler}/>
+                🐥<input type="text" onKeyUp={keyUpHandler}/>
 
             </header>
         );

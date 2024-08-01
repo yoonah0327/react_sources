@@ -1,0 +1,13 @@
+div {
+  border: 2px solid pink;
+  margin: 5px;
+  padding: 5px;
+  margin-right: 100px;
+}
+
+div#super {
+  border: 2px dotted olive;
+  margin: 5px;
+  padding: 5px;
+  margin-right: 100px;
+}

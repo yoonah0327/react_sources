@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+     <!-- 부트스트랩 5 CSS 링크 -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    반복 렌더링을 위한 v-for연습: js 파일을 별도작성
+    <div id="app">
+        <h3>취향저격 음료</h3>
+        <ul>
+            <li v-for="drinks in list" :key="drinks">{{ drinks }}</li>
+        </ul>
+        <h3>가고 싶은 여행지 목록</h3>
+        <ol>
+            <li v-for="(city, index) in objArr" :key="index">{{city.site}}은/는 {{city.taketime}}</li>
+        </ol>
+        <h3>구구단 3단 출력</h3>
+        <ul>
+            <li v-for="n in 9" :key="n">3 * {{n}} = {{3*n}}</li>
+        </ul>
+        <h3>배열 자료 추가, 삭제</h3>
+        <ul>
+            <li v-for="(item, index) in myArr" :key="index">{{item}}</li>
+        </ul>
+        <button @click="addList">자료추가(맨뒤)</button>
+        <button @click="addListIndex(3)">자료추가(특정)</button>
+        <button @click="changeList(2)">자료변경</button>
+        <button @click="deleteList(1)">자료삭제</button>
+
+        <h3>for + if 문 조합 : 홀수 출력</h3>
+        <span v-for="(i, index) in numArr" :key="index" v-if="i % 2 === 1">{{ i }}</span>
+    </div>
+    <script src="ex7add.js"></script>
+    <!-- 부트스트랩 5 JavaScript 번들 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

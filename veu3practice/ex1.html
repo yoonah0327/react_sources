@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--jquery 라이브러리 로딩 : CDN 사용-->
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#msg').text('jQuery로 메세지 출력');
+        });
+    </script>
+    <!-- vue3 라이브러리 로딩: CDN-->
+     <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    월요일 아침<br>
+    jQuery 출력결과: <span id="msg"></span>
+    <hr>
+    vue 출력 1:
+    <!-- 데이터 바인딩 기본 형태는 Mustache(텍스토보간) 구문을 사용-->
+    <span id="app1">{{msg}}</span> <!--MVVM패턴의 view-->
+    <script>
+        let hi = {msg:'뷰세계 방문~'}; //데이터객체정의. MVVM패턴에서 Model
+        Vue.createApp({ //MVVM 패턴에서 ViewModel
+            // Vue.createApp()에 의해 생성된 객체를 어플리케이션 인스턴스라 함.
+            data(){
+                return hi;
+            }
+        }).mount('#app1') // id= "app1" 요소에 마운트(DOM요소에 연결. 즉 렌더링한다는뜻)
+    </script>
+    <hr>
+    vue 출력2: 
+    <div id="app2">
+        {{message1}}&nbsp;{{message2}}&nbsp;{{message3}}
+        <br/>
+        <button @click="updateMessage">메세지변경</button>
+    </div>
+
+    <script> // vue3는 vue2와 달리 생성자가 아니라 createApp 함수를 이용해 어플리케이션을 인스턴스함.
+      const {createApp} = Vue;
+     createApp({
+        data(){
+            return{
+                message1: '안녕 뚜비야',
+                message2: '반가워' + '텔레토비동산은 여전하니?',
+                message3: Math.random() * 9
+            }
+        },
+       //라이프사이클 관련 메소드 일부확인
+       //메소드 내에서 실행되는 custom logic을 cycle hook이라고 한다.
+       beforeCreate() { //초기화 담당
+        console.log('beforeCreate: 인스턴스가 생성되고나서 가장 처음으로 실행')
+       }, 
+       created() { //화면에 반응성 주입
+        console.log('created: 아직 화면 요소에 인스턴스가 부착되기 전 ')
+       },
+       mounted() { //속성값대입
+        console.log('mounted: 지정한 화면 요소에 인스턴스가 부착되고 난 후 호출')
+       },
+       beforeUpdate() { //인스턴스의 데이터변경
+        console.log('beforeUpdate: 지정한 화면 요소에 인스턴스가 부착되고 난 후에 인스턴스 속성들이 화면에 치환')
+       },
+       updated(){
+        console.log('updated: beforeUpdate가 끝나고 화면에 다시 그리고 나면 실행')
+       },
+       methods: {
+        updateMessage(){
+            this.message1="hello";
+            this.message2="good";
+            this.message3= Math.random() *90;
+        }
+       }
+     }).mount('#app2')
+    </script>
+  </body>
+</html>

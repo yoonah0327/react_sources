@@ -4,7 +4,7 @@ import { legacy_createStore as createStore } from "redux";
 //리듀서함수: 어플리케이션 상태를 변환하는 함수. A상태>B상태. state와 action을 전달받아 상태변환 후 반환해준다.
 //하는일 1) action type분석. 2) 이전상태>다음상태로 교체. 3) 다음상태 반환.
 export default createStore(function(state, action){
-    // state: 데이터. action: 데이터에 가해지는 행위.
+    // state: 데이터. action: 데이터에 가해지는 행위.z
     if(state === undefined){
         return {number:0} // number 초기화
     }

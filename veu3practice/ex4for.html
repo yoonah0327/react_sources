@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <h2>v-for 연습: 반응형 데이터 생성 및 사용</h2>
+    <div id="app">
+        <div>
+            <h3>도서정보</h3>
+             <!-- v-for 디렉티브를 사용하여 bookList 배열의 각 책을 반복하여 출력 -->
+            <article v-for="(book, index) in bookList" :key="index">
+                <input type="checkbox" :id="'book' + index" :value="book" v-model="selectedBooks">
+                <!-- value: 체크박스의 값으로 현재 책 객체를 지정 -->
+                 <!-- v-model: 체크박스의 선택 상태와 selectedBooks 배열을 양방향 바인딩 -->
+                <label :for="'book' + index">{{book.name}} {{book.price}}</label>
+            </article>
+        </div>
+        <div>
+            <h3>선택된 도서: </h3>
+            <ul>
+                <li v-for="(book, index) in selectedBooks" :key="index">
+                {{index +1}} : {{book.name}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const {createApp, ref} = Vue;
+
+        createApp({
+            setup(props){ 
+                const bookList = ref([ 
+                {name: "자바 입문", price:25000},
+                {name: "마리아디비 활용", price:27000},
+                {name: "JS 실습해보기", price:14000},
+                {name: "스프링 전문가 되기", price:28000},
+                {name: "뷰 기초", price:12000},
+                ])
+
+                const selectedBooks= ref([]); //사용자가 선택한 책 저장용 배열
+                
+                return {bookList, selectedBooks}
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

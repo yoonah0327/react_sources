@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+  빌트인 디렉티브: HTML태그안에 들어가는 속성역할을 하며, v-라는 접두어가 붙는다<br>
+  디렉티브는 DOM 엘리먼트가 뭔가를 수행하도록 지시하는 특수한 토큰이다.
+  <div id="app">
+    <a href="{{link}}">링크(에러.연결안됨)</a><br>
+    <!--directive 사용: 동적으로 href 속성을 vue인스턴스의 link 데이터 속성과 연결-->
+    <a v-bind:href="link">다음으로연결</a><br>
+    <a :href="link">다음으로연결</a><br>
+    <img v-bind:src="imageSrc" alt="동적 이미지"/><br>
+    <h2 v-text='speakoutloud'></h2>
+    <h2>data속성값1: {{speakoutloud}}</h2>
+    <h2 v-once='speakoutloud'>data속성값2: {{speakoutloud}}</h2>
+    <h3>함수 호출 결과: {{solFunc()}}</h3>
+
+    <span v-text="aLinkNaver">문자열그대로출력(innerText)</span><br>
+    <span v-html="aLinkNaver">문자열그대로출력(innerHtml)</span><br>
+<br>
+    <!-- 양방향 데이터 바인딩: v-model은 v-bind + v-on --->
+     이름은 <input type="text" v-model="name"/> {{name}} <br>
+     이름은 <input type="text" v-bind:value="name" v-on:input="changeName"/> {{name}} <br>
+     이름은 <input type="text" :value="name" @input="changeName"/> {{name}} <br>
+     <hr/>
+     <!--계산된 프로퍼티 관련-->
+    a={{a}}, b={{b}}<br/>
+    a값 입력: <input type="text" v-model="a"/><!--문자열-->
+    <br>입력된 a: {{a}} (타입: {{typeof a}})</br>
+    a값 입력: <input type="text" v-model.number="a"/> <!--문자열>숫자로 형변환-->
+    <hr/>
+    제어문 : 조건판단문, 반복문<br>
+    <h2 v-if="nai > 20">nai가 20초과</h2>
+    <h2 v-else-if="nai===20">nai가 딱 20</h2>
+    <h2 v-else>nai가 20미만</h2>
+    제어문: 반복문for <br/>
+    <h3>오늘 할일</h3>
+      <ol>
+        <li v-for="(todo, index) in todos" :key="index">{{todo.txt}}</li>
+      </ol>
+      <ul>
+        <li v-for="(todo, index) in todos" :key="index">{{index+1}}) {{todo.txt}}</li>
+      </ul>
+  </div>
+
+
+
+
+  <script>
+    const {createApp} = Vue;
+
+    createApp({
+        data(){
+            return{
+                link:'https://cafe.daum.net/flowlife',
+                imageSrc:'googlebird.png',
+                speakoutloud: '집이좋다구요!!!!!',
+                aLinkNaver:'<a href="https://naver.com">가자 네이버로</a>',
+                name:'3팀',
+
+                a: '1', //문자열데이터
+                nai: 20, //숫자데이터
+                todos: [
+                  {txt:'아침먹고'},
+                  {txt:'점심먹고'},
+                  {txt:'집에가기'}
+                ]
+            }
+        },
+        methods: {
+          solFunc(){
+            this.speakoutloud='엄청습합니다';
+            return this.speakoutloud;
+          },
+          changeName(e){
+            this.name = e.target.value;
+          },
+          
+        },
+        computed:{ //computed properties: 함수처럼 작동. 차이는 계산된 프로퍼티가 의존하는 요소가 변경되면 반응
+          b(){
+            return this.a +1;
+          }
+        }
+    }).mount('#app')
+  </script>
+</body>
+</html>
